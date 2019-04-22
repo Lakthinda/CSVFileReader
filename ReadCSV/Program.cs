@@ -37,6 +37,11 @@ namespace ReadCSV
             string folderPath = configuration["ReadCSV.FolderPath"];
             string percentageStr = configuration["ReadCSV.Percentage"];
             int percentage = percentageStr.TryGetInt();
+
+            if(percentage > 100 || percentage < 0)
+            {
+                throw new ArgumentOutOfRangeException("Values should be between 0 and 100");
+            }
             
             ReadCSVFilesRequest request = new ReadCSVFilesRequest
             {
